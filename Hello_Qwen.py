@@ -6,7 +6,7 @@ try:
         # 若没有配置环境变量，请用阿里云百炼API Key将下行替换为：api_key="sk-xxx",
         api_key=os.getenv("PRIVATE_QWEN_API_KEY"),
         # 各地域配置不同，请根据实际地域修改
-        base_url="https://dashscope.aliyuncs.com/api/v2/apps/protocols/compatible-mode/v1",
+        base_url=os.getenv("PRIVATE_QWEN_BASE_URL")
     )
 
     response = client.responses.create(
