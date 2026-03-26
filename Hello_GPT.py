@@ -12,7 +12,7 @@ def initialize_client():
         client = AzureOpenAI(
             azure_endpoint=AZURE_ENDPOINT,
             api_key=AZURE_API_KEY,
-            api_version="2025-01-01"  # API 版本
+            api_version="2025-01-01-preview"  # API 版本
         )
         print("✅ Azure OpenAI 客户端初始化成功！")
         return client
@@ -51,9 +51,8 @@ def chat_with_azure_openai():
         messages.append({"role": "user", "content": user_input})
         
         try:
-            api_version = "2024-06-01"  # 与初始化时一致
-            request_url = f"{AZURE_ENDPOINT.rstrip('/')}/openai/deployments/{DEPLOYMENT_NAME}/chat/completions?api-version={api_version}"
-            print(f"[调试] 请求 URL: {request_url}")
+            # request_url = f"{AZURE_ENDPOINT.rstrip('/')}/openai/deployments/{DEPLOYMENT_NAME}/chat/completions?api-version={client.API_VERSION}"
+            # print(f"[调试] 请求 URL: {request_url}")
 
             # 调用 Azure OpenAI 模型生成回复 [citation:4]
             response = client.chat.completions.create(
