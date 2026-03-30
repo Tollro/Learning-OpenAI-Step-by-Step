@@ -61,6 +61,7 @@ class MainWindow(QMainWindow):
         self.messages = [
             {"role": "system", "content": "你是一位专业的财务分析师。"}
         ]
+        
         self.current_file_path = ""
         self.is_processing = False
 
