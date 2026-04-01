@@ -11,14 +11,18 @@ def sliding_window_chunks(text, chunk_size, step):
     step: 滑动步长
     """
     chunks = []
-    for i in range(0, len(text) - chunk_size + 1, step):
-        chunk = text[i:i+chunk_size]
-        chunks.append(chunk)
-    # 若最后剩下的部分长度大于0小于chunk_size，则补充最后一个chunk
-    if len(text) % step != 0 and len(text) > chunk_size:
-        last_chunk = text[-chunk_size:]
-        if last_chunk not in chunks:
-            chunks.append(last_chunk)
+    n = len(text)
+    if n == 0:
+        return chunks
+
+    # 只生成“完整长度”的窗口，避免末尾产生短 chunk / 空 chunk
+    last_full_start = max(0, n - chunk_size)
+    for i in range(0, last_full_start + 1, step):
+        chunks.append(text[i:i + chunk_size])
+
+    # 若最后一个完整窗口无法覆盖到文本末尾，则补齐末尾 chunk（保持顺序）
+    if n > chunk_size and (not chunks or chunks[-1] != text[-chunk_size:]):
+        chunks.append(text[-chunk_size:])
     return chunks
 
 if __name__ == '__main__':
