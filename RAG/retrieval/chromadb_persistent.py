@@ -117,7 +117,7 @@ def document_from_item(item: dict) -> str:
 
 if __name__ == "__main__":
     # 加载数据（JSONL：一行一条）
-    data_path = os.path.join(os.path.dirname(__file__), "train_zh.json")
+    data_path = "D:/Git/temps/train.json"  # 数据路径
     data_list = jsonl_load(data_path)
 
     # 分批次参数, 提高运行速度，减少内存占用

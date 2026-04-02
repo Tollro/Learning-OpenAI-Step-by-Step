@@ -118,7 +118,7 @@ def document_from_item(item: dict) -> str:
 
 if __name__ == "__main__":
     # 加载数据（JSONL：一行一条）
-    data_path = os.path.join(os.path.dirname(__file__), "train_zh.json")
+    data_path = "D:/Git/temps/train.json"  # 数据路径
     data_list = jsonl_load(data_path)
 
     # # 调试时只处理前 N 条，避免全量跑 embedding 过久
