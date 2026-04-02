@@ -131,7 +131,7 @@ if __name__ == "__main__":
     ids = [str(idx) for idx in range(len(data_list))]
 
     # 初始化Chroma数据库,保存到当前文件夹下的 chroma_db 子目录（硬盘）
-    treatment_db = My_chromadb("./retrieval/test_db")
+    treatment_db = My_chromadb("./RAG/retrieval/test_db")
     print("chromadb 已创建！")
 
     treatment_db.add_collection("treatments")
