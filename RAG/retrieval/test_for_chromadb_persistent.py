@@ -121,10 +121,10 @@ if __name__ == "__main__":
     data_path = "D:/Git/temps/train.json"  # 数据路径
     data_list = jsonl_load(data_path)
 
-    # # 调试时只处理前 N 条，避免全量跑 embedding 过久
-    # _max = 10
-    # if _max:
-    #     data_list = data_list[: int(_max)]
+    # 调试时只处理前 N 条，避免全量跑 embedding 过久
+    _max = 10
+    if _max:
+        data_list = data_list[: int(_max)]
 
     instructions = [embed_text_from_item(item) for item in data_list]
     documents = [document_from_item(item) for item in data_list]
