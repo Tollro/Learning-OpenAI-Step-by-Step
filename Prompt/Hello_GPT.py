@@ -1,7 +1,7 @@
 import os
 from openai import AzureOpenAI
 
-# 请在这里填写你的 Azure OpenAI 资源信息
+# Azure OpenAI 资源信息
 AZURE_ENDPOINT = os.getenv("AZURE_GPT4O_ENDPOINT")  # 替换为你的终结点
 AZURE_API_KEY = os.getenv("AZURE_GPT4O_API_KEY")  # API Key
 DEPLOYMENT_NAME = "gpt-4o"  # 模型部署名
