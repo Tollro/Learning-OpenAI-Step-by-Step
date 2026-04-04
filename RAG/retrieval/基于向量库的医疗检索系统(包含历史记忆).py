@@ -62,6 +62,8 @@ class My_chromadb:
         # 防止重复创建同名集合，先检查是否存在
         collection = self.chroma_client.get_or_create_collection(
             name=collection_name
+            # 可添加configuration={"hnsw: {"space": "cosine", "ef_construction":100}}等参数优化检索性能
+            # 默认检索方式为HNSW，L2距离
         )
         return collection
     
