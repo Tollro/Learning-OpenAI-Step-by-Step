@@ -9,6 +9,30 @@ def get_weather():
     """获取天气"""
     return "晴天"
 
+def print_messages_simple(messages):
+    """简洁打印消息列表，只显示类型、内容和工具调用信息"""
+    for i, msg in enumerate(messages):
+        msg_type = msg.__class__.__name__
+        print(f"\n--- 第 {i+1} 条消息 ({msg_type}) ---")
+        
+        if msg_type == "HumanMessage":
+            print(f"内容: {msg.content}")
+        elif msg_type == "AIMessage":
+            if msg.content:
+                print(f"内容: {msg.content}")
+            if hasattr(msg, "tool_calls") and msg.tool_calls:
+                for tc in msg.tool_calls:
+                    print(f"调用工具: {tc['name']}, 参数: {tc['args']}")
+        elif msg_type == "ToolMessage":
+            print(f"工具名称: {msg.name}")
+            # 如果返回内容过长可截断显示
+            content = msg.content
+            if len(content) > 200:
+                content = content[:200] + "..."
+            print(f"返回内容: {content}")
+        else:
+            print(f"agent回复内容: {msg.content}")
+
 # 共享状态
 class AgentState(TypedDict):
     # add_messages 是一个内置的 reducer，新消息被追加，而不是覆盖
@@ -67,4 +91,7 @@ workflow.add_conditional_edges(
 )
 
 # 编译图
-app = workflow.compile()
+graph = workflow.compile()
+resp = graph.invoke({"messages":"今天天气如何？"})
+print(resp,"\n")
+print_messages_simple(resp["messages"])

@@ -1,7 +1,7 @@
 import os
 from langchain_openai import AzureChatOpenAI
 
-def create_gpt_call(temperature: float, max_tokens: int) -> AzureChatOpenAI:
+def create_gpt_call(temperature=0.7, max_tokens=500) -> AzureChatOpenAI:
     llm = AzureChatOpenAI(
                 azure_endpoint=os.getenv("AZURE_GPT4O_ENDPOINT"),
                 api_key=os.getenv("AZURE_GPT4O_API_KEY"),
